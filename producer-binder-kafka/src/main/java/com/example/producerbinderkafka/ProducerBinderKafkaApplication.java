@@ -1,4 +1,4 @@
-package com.example.producerbinderkakfa;
+package com.example.producerbinderkafka;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @EnableBinding(Source.class)
-public class ProducerBinderKakfaApplication {
+public class ProducerBinderKafkaApplication {
 
 	@RestController
 	public static class ProducerRestController {
@@ -24,14 +24,11 @@ public class ProducerBinderKakfaApplication {
 
 		@GetMapping("/hello/{name}")
 		public void greet(@PathVariable String name) {
-			this.source
-					.output()
-					.send(MessageBuilder.withPayload("Hello, " + name + "!").build());
+			this.source.output().send(MessageBuilder.withPayload("Hello, " + name + "!").build());
 		}
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(ProducerBinderKakfaApplication.class, args);
+		SpringApplication.run(ProducerBinderKafkaApplication.class, args);
 	}
 }
-
